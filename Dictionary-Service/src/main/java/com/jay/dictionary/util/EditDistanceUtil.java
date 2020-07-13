@@ -4,14 +4,23 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class EditDistanceUtil {
-
+	
+	/* *
+	 * EditDistance is an algorithm used to find the number of insert and delete 
+	 * operations required to convert one string into another string. 
+	 */
 	public EditDistanceUtil() {
 		super();
 	}
 	
+	/*
+	 * This method is the implementation of the actual algorithm.
+	 * It returns the number of operations required to convert string a into string b or vice versa
+	 */
 	public int findDistanceBetween(String a, String b) {
 		int n = a.length()+1;
 		int m = b.length()+1;
+		// dp means Dynamic Programming
 		int dp[][] = new int[n][m];
 		
 		for(int i=0; i<n; i++) dp[i][0] = i;
