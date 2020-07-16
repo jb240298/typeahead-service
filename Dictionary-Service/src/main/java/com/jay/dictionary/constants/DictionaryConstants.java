@@ -10,5 +10,7 @@ public class DictionaryConstants {
 	public static final String SUGGESSION_SIZE = "suggession.size";
 	
 	public static final String CONFIG_LOG_PRINT_FLAG = "config.log.print.flag";
+	
+	public static final String CACHE_CAPACITY = "cache.capacity";
 
 }

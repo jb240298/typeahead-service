@@ -9,7 +9,7 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.jay.dictionary.constants.DictionaryConfiguration;
+import com.jay.dictionary.configuration.DictionaryConfiguration;
 import com.jay.dictionary.constants.DictionaryConstants;
 
 @Component
@@ -44,17 +44,6 @@ public class Trie {
 	@PostConstruct
 	public void trie() {
 		dictionaryConfig = dictionaryConfiguration.getDictionaryConfiguration();
-		if(Boolean.parseBoolean(dictionaryConfig.get(DictionaryConstants.CONFIG_LOG_PRINT_FLAG))) {
-			printConfiguration();
-		}
-	}
-	
-	public void printConfiguration() {
-		System.out.println("***************************************");
-		System.out.println("*****************Trie******************");
-		System.out.println(DictionaryConstants.EDIT_DISTANCE_THRESHOLD + ": " + dictionaryConfig.get(DictionaryConstants.EDIT_DISTANCE_THRESHOLD));
-		System.out.println(DictionaryConstants.SUGGESSION_SIZE + ": " + dictionaryConfig.get(DictionaryConstants.SUGGESSION_SIZE));
-		System.out.println("***************************************");
 	}
 	
 	/*
