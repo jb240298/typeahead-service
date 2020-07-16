@@ -5,6 +5,7 @@ Implemented a backend service to search a word in a Dictionary using Trie Data S
 ### Features :
 * Typeahead Feature using Trie Data Structure.
 * Appropriate Suggession using Dynamic Programming Algorithm - Edit Distance.
+* LRU cache
 
 ### Future Update :
-* LRU Cache implementation.
+* Maintaining history
