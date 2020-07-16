@@ -15,6 +15,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
+import com.jay.dictionary.cache.LRUCache;
 import com.jay.dictionary.util.SearchWordsUtil;
 import com.jay.dictionary.util.Trie;
 
@@ -29,6 +30,9 @@ public class DictionaryServiceImpl implements DictionaryService {
 	@Autowired
 	private SearchWordsUtil searchWordsUtil;
 	
+	@Autowired
+	private LRUCache cache;
+	
 	@PostConstruct
 	public void init(){
 		if(words == null) {
@@ -39,9 +43,21 @@ public class DictionaryServiceImpl implements DictionaryService {
 	@Override
 	public List<String> searchWords(String word) {
 		if(words == null) getAllWords();
-		List<String> searchedWords = root.search(word);
+		
+		// Fetch from the cache, if it exist then return it.
+		List<String> searchedWords = cache.get(word);
+		if(searchedWords != null) return searchedWords;
+		
+		// If it is not available in cache then search in trie.
+		searchedWords = root.search(word);
+		
+		// It it is not available in Trie, apply Edit Distance Algorithm to find closest word
 		if(searchedWords != null && !searchedWords.isEmpty()) return searchedWords;
 		searchedWords = searchWordsUtil.findNearestWords(word, root, words);
+		
+		// After computing, store it in cache.
+		if(searchedWords != null && !searchedWords.isEmpty()) cache.put(word, searchedWords);
+		
 		return searchedWords;
 	}
 
