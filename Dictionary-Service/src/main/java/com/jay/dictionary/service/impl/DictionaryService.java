@@ -1,4 +1,4 @@
-package com.jay.dictionary.service;
+package com.jay.dictionary.service.impl;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,11 +16,12 @@ import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
 import com.jay.dictionary.cache.LRUCache;
+import com.jay.dictionary.service.IDictionaryService;
 import com.jay.dictionary.util.SearchWordsUtil;
 import com.jay.dictionary.util.Trie;
 
 @Service
-public class DictionaryServiceImpl implements DictionaryService {
+public class DictionaryService implements IDictionaryService {
 	
 	private List<String> words;
 	

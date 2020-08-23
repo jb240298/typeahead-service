@@ -2,7 +2,7 @@ package com.jay.dictionary.service;
 
 import java.util.List;
 
-public interface DictionaryService {
+public interface IDictionaryService {
 	
 	public List<String> searchWords(String word);
 	
