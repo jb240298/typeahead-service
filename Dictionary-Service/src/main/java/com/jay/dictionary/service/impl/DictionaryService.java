@@ -20,6 +20,10 @@ import com.jay.dictionary.service.IDictionaryService;
 import com.jay.dictionary.util.SearchWordsUtil;
 import com.jay.dictionary.util.Trie;
 
+/**
+ * @author Jay
+ *
+ */
 @Service
 public class DictionaryService implements IDictionaryService {
 	
@@ -41,6 +45,12 @@ public class DictionaryService implements IDictionaryService {
 		}
 	}
 
+	/**
+	 * This method receives a word and returns appropriate suggestions
+	 * 
+	 * @param {@link String} 
+	 * @return {@link String} list
+	 */
 	@Override
 	public List<String> searchWords(String word) {
 		if(words == null) getAllWords();
@@ -52,7 +62,7 @@ public class DictionaryService implements IDictionaryService {
 		// If it is not available in cache then search in trie.
 		searchedWords = root.search(word);
 		
-		// It it is not available in Trie, apply Edit Distance Algorithm to find closest word
+		// If it is not available in Trie, apply Edit Distance Algorithm to find closest word
 		if(searchedWords != null && !searchedWords.isEmpty()) return searchedWords;
 		searchedWords = searchWordsUtil.findNearestWords(word, root, words);
 		
@@ -62,6 +72,12 @@ public class DictionaryService implements IDictionaryService {
 		return searchedWords;
 	}
 
+	/**
+	 * This method returns all the words stored in the text file located at resource folder
+	 * 
+	 * @param
+	 * @return {@link String} list
+	 */
 	@Override
 	public List<String> getAllWords() {
 		
