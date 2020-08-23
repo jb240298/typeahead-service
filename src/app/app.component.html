@@ -3,7 +3,7 @@
   <input class="txt-search" type="text" value="{{this.word}}" (keyup)="onKey($event)"/><br/>
   <div>
     <div *ngFor="let responseWord of responseWords" class="search-result">
-      <div class="txt-search"><a href="https://www.google.com/q={{this.word}}">{{ responseWord }}</a></div>
+      <div class="txt-search"><a href="https://www.google.com/search?q={{this.word}}">{{ responseWord }}</a></div>
     </div>
   </div>
 </div>
