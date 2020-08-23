@@ -26,8 +26,8 @@ public class DictionaryController {
 	/**
 	 * This method receives a word and returns appropriate suggestions
 	 * 
-	 * @param {@link String} 
-	 * @return {@link String} list
+	 * @param {@link String}
+	 * @return {@link List}<{@link String}>
 	 */
 	@GetMapping("/search/{word}")
 	public ResponseEntity<List<String>> searchWords(@PathVariable String word) {
@@ -38,7 +38,7 @@ public class DictionaryController {
 	 * This method returns all the words stored in the text file located at resource folder
 	 * 
 	 * @param
-	 * @return {@link String} list
+	 * @return {@link List}<{@link String}>
 	 */
 	@GetMapping("/all")
 	public ResponseEntity<List<String>> getAllWords() {
