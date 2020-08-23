@@ -1,4 +1,4 @@
-package com.jay.dictionary.service;
+package com.jay.dictionary.service.impl;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,11 +16,16 @@ import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
 import com.jay.dictionary.cache.LRUCache;
+import com.jay.dictionary.service.IDictionaryService;
 import com.jay.dictionary.util.SearchWordsUtil;
 import com.jay.dictionary.util.Trie;
 
+/**
+ * @author Jay
+ *
+ */
 @Service
-public class DictionaryServiceImpl implements DictionaryService {
+public class DictionaryService implements IDictionaryService {
 	
 	private List<String> words;
 	
@@ -40,6 +45,12 @@ public class DictionaryServiceImpl implements DictionaryService {
 		}
 	}
 
+	/**
+	 * This method receives a word and returns appropriate suggestions
+	 * 
+	 * @param {@link String} 
+	 * @return {@link String} list
+	 */
 	@Override
 	public List<String> searchWords(String word) {
 		if(words == null) getAllWords();
@@ -51,7 +62,7 @@ public class DictionaryServiceImpl implements DictionaryService {
 		// If it is not available in cache then search in trie.
 		searchedWords = root.search(word);
 		
-		// It it is not available in Trie, apply Edit Distance Algorithm to find closest word
+		// If it is not available in Trie, apply Edit Distance Algorithm to find closest word
 		if(searchedWords != null && !searchedWords.isEmpty()) return searchedWords;
 		searchedWords = searchWordsUtil.findNearestWords(word, root, words);
 		
@@ -61,6 +72,12 @@ public class DictionaryServiceImpl implements DictionaryService {
 		return searchedWords;
 	}
 
+	/**
+	 * This method returns all the words stored in the text file located at resource folder
+	 * 
+	 * @param
+	 * @return {@link String} list
+	 */
 	@Override
 	public List<String> getAllWords() {
 		
