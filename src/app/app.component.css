@@ -1,0 +1,40 @@
+.div-root {
+    width: 50%;
+    border-color: silver;
+    margin: auto;
+    margin-top: 20px;
+    color: darkslategrey;
+}
+
+.center {
+    text-align: center;
+}
+
+.txt-search {
+    border-color: silver;
+    width: 70%;
+    height: 40px;
+    margin: auto;
+    flex: 1;
+    display: flex;
+    padding: 0px 20px 0px 20px;
+    background: #fff;
+    color: darkslategrey;
+    font-family: arial,sans-serif;
+    font-size: 20px;
+    border-radius: 25px;
+    outline: none;
+}
+
+.search-result {
+    padding: 0px;
+    height: 35px;
+}
+
+* {
+    font-family: arial,sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
